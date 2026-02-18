@@ -1,0 +1,30 @@
+{
+  "name": "acr-qmentis-acreditplus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACREnterprise/acr-qmentis-acreditplus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ACREnterprise/acr-qmentis-acreditplus/issues"
+  },
+  "homepage": "https://github.com/ACREnterprise/acr-qmentis-acreditplus#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.10",
+    "playwright": "^1.57.0"
+  },
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.3",
+    "xlsx": "^0.18.5"
+  }
+}

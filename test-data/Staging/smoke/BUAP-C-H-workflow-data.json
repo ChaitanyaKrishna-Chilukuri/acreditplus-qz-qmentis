@@ -1,0 +1,123 @@
+{
+  "modality": "BUAP",
+  "submission": {
+    "login": {
+      "user": "acreditplusfacilityuser@yahoo.com"
+    },
+    "packageId": "60780",
+    "patientOutcomeData": {
+      "someData": "test",
+      "physicianAndTechnologist": true,
+      "yesRadio": true,
+      "startDate": "01/12/2026",
+      "endDate": "02/02/2026",
+      "ultrasoundGuidedBreast": "12345",
+      "cancersFound": "12345",
+      "benignLesions": "12345",
+      "biopsiesNeedingRepeat": "12345",
+      "complications": "12345",
+      "insufficientSample": {
+        "item1210": "1234",
+        "item1430": "1234"
+      },
+      "discordanceWithImaging": {
+        "item1320": "1234"
+      },
+      "cellularAtypiaRadialScar": {
+        "item1420": "1234",
+        "item1430": "1234"
+      },
+      "item1510": "121",
+      "item1520": "1212",
+      "item1330": "1234",
+      "item1530": "1212",
+      "hematomas": "12345",
+      "infection": "12345",
+      "pneumothorax": "12345"
+    },
+    "cystAspirationData": {
+      "startDate": "01/14/2026",
+      "endDate": "01/29/2026",
+      "someData": "test",
+      "size": "12.1"
+    },
+    "solidMassData": {
+      "startDate": "01/14/2026",
+      "endDate": "01/29/2026",
+      "someData": "test",
+      "size": "12.1"
+    },
+    "cnbExamData": {
+      "startDate": "01/14/2026",
+      "endDate": "01/29/2026",
+      "child37": "test",
+      "child491": "test",
+      "size": "151.511",
+      "frequency": "105.511"
+    },
+    "fnacExamData": {
+      "startDate": "01/14/2026",
+      "endDate": "01/29/2026",
+      "gauge": "123.456",
+      "frequency": "105.511"
+    },
+    "filePath": "Decals_03_27_2025.pdf"
+  },
+  "confirmation": {
+    "login": {
+      "username": "acreditplusadmnstr@yahoo.com",
+      "url": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login",
+      "adminDashboard": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/FacilitySearch/List?shouldRetainSearh=False"
+    },
+    "search": {
+      "modalityOption": "9",
+      "modalityId": "60780"
+    },
+    "viewItems": {
+      "itemOption": "5",
+      "unitStatus": "2"
+    }
+  },
+  "assignment": {
+    "adminCredentials": {
+      "username": "acreditplusadmnstr@yahoo.com"
+    },
+    "searchCriteria": {
+      "modalityValue": "9",
+      "modalityId": "60780",
+      "examTypes": [
+        "Clinical"
+      ]
+    },
+    "urls": {
+      "loginPage": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login",
+      "adminDashboard": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/FacilitySearch/List",
+      "SRPage": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/SRWorklist"
+    }
+  },
+  "review": {
+    "searchCriteria": {
+      "modalityValue": "9",
+      "modalityId": "60780"
+    },
+    "urls": {
+      "loginPage": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login?ReturnUrl=...",
+      "reviewerHome": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Reviewer/ReviewerHome/PendingReviewList",
+      "adminHome": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/FacilitySearch/List?shouldRetainSearh=False"
+    },
+    "adminEmail": "acreditplusadmnstr@yahoo.com",
+    "cystData": {
+      "someData": "test"
+    },
+    "solidData": {
+      "someData": "test"
+    },
+    "cnbData": {
+      "someData": "test"
+    },
+    "reviewerEmails": [
+      "1connie.kim@duke.edu",
+      "1dgeorgian@me.com"
+    ]
+  }
+}

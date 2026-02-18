@@ -1,0 +1,178 @@
+{
+  "modality": "CTAP",
+  "submission": {
+    "login": {
+      "user": "acreditplusfacilityuser@yahoo.com"
+    },
+    "packageId": "60573",
+    "clinical": {
+      "commonText": "test",
+      "item240": "56",
+      "item242": "5",
+      "child132": "10",
+      "item243": "60",
+      "kv": "120",
+      "ma": "300",
+      "time": "24.35",
+      "mas": "150.5",
+      "item721": "52",
+      "fov": "35.5",
+      "channels": "321",
+      "thick": "123.345",
+      "increment": "451.67",
+      "width": "12.345",
+      "interval": "23.456",
+      "ctdivol": "341.56",
+      "dlp": "45678.1234",
+      "events": "5",
+      "doseVal": "250.5"
+    },
+    "phantom": {
+      "commonText": "test",
+      "item273": "123",
+      "item274": "1.34",
+      "item268": "56",
+      "item2121": "21211",
+      "item10201": "1020101",
+      "item221": "11",
+      "item321": "1234.567",
+      "item421": "45.67",
+      "item721": "12",
+      "item821": "34.56",
+      "item1221option": "12211",
+      "item1221": "122.111",
+      "item10020101": "10020101",
+      "item1121": "234",
+      "tableInput1": "112.334",
+      "item1321": "112.34",
+      "item1521": "1.345",
+      "item1621": "12.34",
+      "item1821": "123.4",
+      "item2131": "21311",
+      "item10301": "1030101",
+      "item241": "11",
+      "item341": "1234.567",
+      "item441": "45.67",
+      "item741": "11",
+      "item831": "34.56",
+      "item1231option": "12311",
+      "item1231": "122.111",
+      "item10030101": "10030101",
+      "item1131": "234",
+      "tableInput2": "112.334",
+      "item1331": "112.34",
+      "item1531": "1.345",
+      "item1631": "12.345",
+      "item1831": "123.4",
+      "v1": "1234.567",
+      "v2": "45.67",
+      "v3": "321",
+      "v4": "123.345",
+      "v5": "13142.43",
+      "v6": "456.78",
+      "v7": "7.8911"
+    },
+    "filePath": "Decals_03_27_2025.pdf"
+  },
+  "confirmation": {
+    "login": {
+      "username": "acreditplusadmnstr@yahoo.com",
+      "url": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login",
+      "adminDashboard": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/FacilitySearch/List?shouldRetainSearh=False"
+    },
+    "search": {
+      "modalityOption": "2",
+      "modalityId": "60573"
+    },
+    "viewItems": {
+      "itemOption": "5",
+      "unitStatus": "2"
+    }
+  },
+  "assignment": {
+    "adminCredentials": {
+      "username": "acreditplusadmnstr@yahoo.com"
+    },
+    "searchCriteria": {
+      "modalityValue": "2",
+      "modalityId": "60573",
+      "examTypes": [
+        "Phantom",
+        "Clinical"
+      ]
+    },
+    "urls": {
+      "loginPage": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login",
+      "adminDashboard": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/FacilitySearch/List",
+      "SRPage": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/SRWorklist"
+    }
+  },
+  "review": {
+    "searchCriteria": {
+      "modalityValue": "2",
+      "modalityId": "60573"
+    },
+    "urls": {
+      "loginPage": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login?ReturnUrl=...",
+      "reviewerHome": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Reviewer/ReviewerHome/PendingReviewList",
+      "adminHome": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Admin/FacilitySearch/List?shouldRetainSearh=False"
+    },
+    "adminEmail": "acreditplusadmnstr@yahoo.com",
+    "clinicalSteps": [
+      {
+        "btn": "Next: Adult Temporal Bones"
+      },
+      {
+        "btn": "Next: Adult C-Spine"
+      },
+      {
+        "btn": "Next: Submit"
+      }
+    ],
+    "phantomData": {
+      "itemValue": "1317",
+      "hu": {
+        "water": [
+          "-5.00",
+          "-5.00"
+        ],
+        "poly": "-100.00",
+        "acrylic": "120.00",
+        "bone": "900.00",
+        "air": "-1000.00"
+      },
+      "signals": {
+        "in": [
+          "5466",
+          "5657"
+        ],
+        "out": [
+          "4",
+          "4"
+        ],
+        "sd": [
+          "4",
+          "4"
+        ]
+      },
+      "roi": {
+        "c": "1.00",
+        "t": "1.00",
+        "th": "2.00",
+        "s": "2.00",
+        "n": "2.00"
+      },
+      "ctdivol": {
+        "val1": "0.11",
+        "val2": "0.02",
+        "reason": "Test reasons"
+      }
+    },
+    "reviewerEmails": [
+      "1jnorweck@radiology-inc.com",
+      "1mwu@upstatemp.com",
+      "1mihaela_vava@yahoo.com",
+      "1shadowdoc85@gmail.com"
+    ]
+  }
+}

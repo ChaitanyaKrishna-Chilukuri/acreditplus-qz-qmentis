@@ -1,0 +1,9 @@
+{
+  "expectedDetails": {
+    "modality": "NMAP# 60212",
+    "name" :"TEST_QZ_A1",
+    "desc": "test",
+    "text": "qz",
+    "address" : "Qwerty, Alaska 12345"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "modalityType": "BUAP",
+  "facility": {
+    "phoneNumber": {
+      "first": "654",
+      "second": "567",
+      "third": "8999"
+    },
+    "faxNumber": {
+      "first": "654",
+      "second": "567",
+      "third": "8999"
+    },
+    "owner": {
+      "name": "John Doe"
+    }
+  },
+  "supervisingPhysician": {
+    "firstName": "Adam",
+    "lastName": "Smith",
+    "degreeValue": "5",
+    "email": "fsp@gmail.com"
+  },
+  "administrator": {
+    "firstName": "Jane",
+    "lastName": "Williams",
+    "degreeValue": "1",
+    "credentials": {
+      "arrtRt": true,
+      "bsAfter2011": true,
+      "cci": true,
+      "rvs": true
+    },
+    "phoneNumber": {
+      "first": "654",
+      "second": "567",
+      "third": "8999"
+    },
+    "email": "jane.williams@example.com"
+  },
+  "accountsPayableContact": {
+    "firstName": "Emily",
+    "lastName": "Johnson",
+    "phoneNumber": {
+      "first": "654",
+      "second": "567",
+      "third": "8999"
+    },
+    "email": "fapc@gmail.com"
+  },
+  "practiceSetting": {
+    "selectedPracticeSettingId": "1",
+    "interpretingPhysicians": "1",
+    "facilityType": "1",
+    "locationType": "1"
+  },
+  "printTitleOption": "3",
+  "SupervisingPhysicianContact": {
+    "firstName": "SPC",
+    "lastName": "SP",
+    "degree": "5",
+    "phoneNumber": {
+      "first": "654",
+      "second": "567",
+      "third": "8999"
+    },
+    "email": "spc@gmail.com"
+  },
+  "TechnologistContact": {
+    "firstName": "Cttcpi",
+    "lastName": "TC",
+    "phoneNumber": {
+      "first": "654",
+      "second": "567",
+      "third": "8999"
+    },
+    "email": "cttcpi@gmail.com"
+  },
+  "UnitAndPhysician": {
+    "unit": "1",
+    "peerReviewOption": "Peer Review",
+    "qualityScore": "25"
+  },
+  "CTUnitDetails": {
+    "roomLocation": "1",
+    "manufacturer": "199",
+    "modelName": "4730",
+    "yearManufactured": "1990",
+    "serialNumber": "1001",
+    "operatingLocation": "1"
+  },
+  "BUUnitDetails": {
+    "manufacturer": "11",
+    "modelName": "494",
+    "yearManufactured": "1989",
+    "serialNumber": "001",
+    "operatingLocation": "1",
+    "transducerFrequency": "9",
+    "arrayType": "1"
+  },
+  "InterpretingRadiologist": {
+    "lastName": "INRad",
+    "firstName": "Radio",
+    "email": "Radio@gmail.com",
+    "degreeDO": "D.O.",
+    "degreeMD": "M.D.",
+    "degreeOption": "2"
+  },
+  "MedicoPhysician": {
+    "lastName": "MPHy",
+    "firstName": "MP",
+    "email": "MP@gmail.com",
+    "degreeDO": "D.O.",
+    "degreeMD": "M.D."
+  },
+  "addTechnologist": {
+    "lastName": "Jo",
+    "firstName": "lklk",
+    "email": "tech@gmail.com",
+    "degreeDO": "D.O.",
+    "degreeMD": "M.D.",
+    "certficateARRT": "ARRT (RT)",
+    "certficateCT": "CT",
+    "certFilterCCI": "CCI",
+    "certificateRVS": "RVS"
+  }
+}

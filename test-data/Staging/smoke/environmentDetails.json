@@ -1,0 +1,12 @@
+{
+  "uat": {
+    "acreditURL": "https://acreditplus-cloud-uat-one.acr.org/ACReditPlus",
+    "userName": "acreditplusfacilityuser@yahoo.com",
+    "dashboard": "https://acreditplus-cloud-uat-one.acr.org/ACReditPlus/Facility/Dashboard"
+  },
+  "dev": {
+    "acreditURL": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlusAuthService/Account/Login",
+    "userName": "acreditplusfacilityuser@yahoo.com",
+    "dashboard": "https://acreditplus-cloud-dev-two.acr.org/ACReditPlus/Facility/Dashboard"
+  }
+}
