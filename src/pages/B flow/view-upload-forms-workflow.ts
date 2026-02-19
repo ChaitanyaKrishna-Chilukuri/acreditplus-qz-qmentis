@@ -54,6 +54,7 @@ export class ViewUploadFormsPage {
     async uploadSurveyFile(filePath: string) {
         try {
             // Wait for the file chooser when clicking the upload button
+            await this.uploadSurveyFileButton.waitFor({ state: 'visible' });
             const [fileChooser] = await Promise.all([
                 this.page.waitForEvent('filechooser'),
                 this.page.click('input[acr="btn"][value="Upload new file for Survey Agreement"]'), // This triggers the file dialog
@@ -65,14 +66,17 @@ export class ViewUploadFormsPage {
     }
 
     async sendToACR() {
-        await this.page.getByRole('button', { name: 'Send to ACR' }).click();
-        await this.page.getByRole('button', { name: 'Confirm' }).click();
-        await expect(this.page.locator('#AppViewUploadFormContent')).toContainText('Submitted');
+        await this.sendToAcrButton.waitFor({ state: 'visible' });
+        await this.sendToAcrButton.click();
+        await this.confirmButton.waitFor({ state: 'visible' });
+        await this.confirmButton.click();
+        await expect(this.appViewUploadFormContent).toContainText('Submitted');
     }
 
     async verifyFilesNotReviewedMessage() {
-        await this.page.getByText('The files related to this').click();
-        await expect(this.page.locator('#AppViewUploadFormContent'))
+        await this.filesNotReviewedMessage.waitFor({ state: 'visible' });
+        await this.filesNotReviewedMessage.click();
+        await expect(this.appViewUploadFormContent)
             .toContainText('The files related to this document have not been reviewed by ACR yet.');
     }
 }
