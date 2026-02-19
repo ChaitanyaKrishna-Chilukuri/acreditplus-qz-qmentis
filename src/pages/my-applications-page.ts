@@ -11,8 +11,8 @@ export class MyApplicationsPage extends BasePage {
   private printLegalFormsLink: Locator;
   private applicationGrid: Locator;
   private signOutLink: Locator;
-  private printLegalForms:Locator;
-  private viewSubmittedApplication:Locator;
+  private printLegalForms: Locator;
+  private viewSubmittedApplication: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -24,7 +24,7 @@ export class MyApplicationsPage extends BasePage {
     this.printLegalFormsLink = page.getByRole('link', { name: 'Print legal forms for Submission' });
     this.applicationGrid = page.locator('#gridList_AccrAppList');
     this.signOutLink = page.getByRole('link', { name: 'Sign Out' });
-    this.printLegalForms = page.getByRole('link', { name: 'Print legal forms for' });
+    this.printLegalForms = page.getByRole('link', { name: 'Print legal forms for Submission' }); // Updated for accuracy
     this.viewSubmittedApplication = this.page.getByRole('link', { name: 'View Submitted Application' }).first();
   }
 
@@ -62,27 +62,48 @@ export class MyApplicationsPage extends BasePage {
   }
 
   /* ---------------- Print Legal Forms ---------------- */
+  /**
+   * Returns true if the 'Print legal forms for Submission' link is visible for the submitted application.
+   * Uses a stable selector and explicit visibility check.
+   */
   async isPrintLegalFormsLinkVisible(): Promise<boolean> {
+    await this.waitForApplicationDetailsLoad();
     return await this.printLegalFormsLink.isVisible();
   }
 
-  async verifyPrintLegalFormsLink1(): Promise<void> {
+  /**
+   * Waits for the 'Print legal forms for Submission' link to be visible and asserts its presence.
+   * Use this for explicit assertion in tests.
+   */
+  async expectPrintLegalFormsLinkVisible(): Promise<void> {
+    await expect(this.printLegalFormsLink).toBeVisible({ timeout: 10000 });
+  }
 
+  /**
+   * Clicks on the 'Print legal forms for Submission' link and returns the popup page.
+   * Waits for the link to be visible before clicking, and handles the popup window.
+   */
+  async clickOnPrintLegalForms(): Promise<Page> {
+    await expect(this.printLegalForms).toBeVisible({ timeout: 10000 });
+    const popupPromise = this.page.waitForEvent('popup');
+    await this.printLegalForms.click();
+    return await popupPromise;
+  }
+
+  /**
+   * (Deprecated) Waits and asserts visibility of the print legal forms link. Use expectPrintLegalFormsLinkVisible instead.
+   */
+  async verifyPrintLegalFormsLink1(): Promise<void> {
     await this.page.waitForTimeout(5000);
     await expect(this.printLegalFormsLink).toBeVisible();
   }
 
-    // Verify the "Print legal forms for Submission" link is visible
+  /**
+   * (Deprecated) Clicks the print legal forms link using XPath. Use clickOnPrintLegalForms instead.
+   */
   async verifyPrintLegalFormsLink(page1: Page) {
-    
     await this.page.waitForTimeout(3000);
     await this.page.locator("xpath=//a[text()='Print legal forms for Submission']").click();
-  }
-
-  async clickOnPrintLegalForms(): Promise<Page> {
-    const popupPromise = this.page.waitForEvent('popup');
-    await this.printLegalForms.click();
-    return await popupPromise;
   }
 
   async clickOnViewSubmittedApplicationSummary(): Promise<Page> {
