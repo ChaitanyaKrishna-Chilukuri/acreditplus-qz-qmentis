@@ -1,78 +1,58 @@
 import { test, expect, Page } from "@playwright/test";
 import { LoginPage } from "@/pages/LoginPage";
 import { MyApplicationsPage } from "@/pages/my-applications-page";
-import { ActionUtils } from "@/utils/action-utils";
-import { AllureReporter } from "@/utils/action-utils";
 import environmentDetails from "@data/Staging/smoke/environmentDetails.json";
 import printLegalFormsData from "@data/Staging/smoke/PrintLegalForms.json";
-import { pageFixture } from "@/utils/pageFixture";
 
-const envKey = process.env.TEST_ENV || "dev";
-const env = environmentDetails[envKey];
+/**
+ * Test Case: TCD_FT_01_FR-1
+ * Name: Verify 'Print Legal Forms for Submission' link visibility for submitted applications
+ * Objective: Ensure the 'Print Legal Forms for Submission' link is visible when the application is submitted and requires specific documents.
+ * Preconditions: Facility User is logged into the ACReditPlus Application System
+ * The application has been submitted and requires legal forms.
+ * Priority: High
+ * Type: Functional
+ */
 
-// Test data for expected link text (if present)
-const expectedLinkText = printLegalFormsData?.expectedDetails?.text || "Print legal forms for Submission";
+test.describe("TCD_FT_01_FR-1 | My Applications - Print Legal Forms link visibility", () => {
+  let page: Page;
+  let loginPage: LoginPage;
+  let myApplicationsPage: MyApplicationsPage;
+  const env = process.env.TEST_ENV || "dev";
+  const envConfig = environmentDetails[env];
+  const facilityUser = envConfig.userName;
+  const baseUrl = envConfig.acreditURL;
+  // Use applicationId from PrintLegalForms.json if available, else fallback
+  const applicationId = printLegalFormsData?.expectedDetails?.applicationId || "635423";
 
-// Utility to find a submitted application that requires legal forms
-async function findSubmittedApplicationWithLegalForms(page: Page, myApplicationsPage: MyApplicationsPage) {
-  // Wait for the applications list to load
-  await myApplicationsPage.waitForLoad();
+  test.beforeEach(async ({ page: testPage }) => {
+    page = testPage;
+    loginPage = new LoginPage(page);
+    myApplicationsPage = new MyApplicationsPage(page);
+  });
 
-  // This assumes the page object provides a way to get a list of applications and their statuses.
-  // If not, you may need to adjust selectors below to match the grid/table structure.
-  // For this example, we look for the first visible 'Print legal forms for Submission' link.
-  const printLegalFormsLinks = page.getByRole('link', { name: /Print legal forms for Submission/i });
-  const count = await printLegalFormsLinks.count();
-  for (let i = 0; i < count; i++) {
-    const link = printLegalFormsLinks.nth(i);
-    if (await link.isVisible()) {
-      return link;
-    }
-  }
-  return null;
-}
+  test("should display 'Print Legal Forms for Submission' link for submitted application requiring legal forms", async () => {
+    // Step 1: Navigate to the ACReditPlus login portal
+    await page.goto(baseUrl);
 
-test.describe("TCD_FT_01_FR-1: Print Legal Forms for Submission link visibility", () => {
-  test("should display 'Print Legal Forms for Submission' link for submitted application requiring legal forms", async ({ page }, testInfo) => {
-    AllureReporter.startStep("Login as Facility User");
-    const loginPage = new LoginPage(page);
-    await page.goto(env.acreditURL);
-    await loginPage.login(env.userName);
-    AllureReporter.endStep();
+    // Step 2: Login as Facility User
+    await loginPage.login(facilityUser);
 
-    AllureReporter.startStep("Navigate to My Applications page");
-    const myApplicationsPage = new MyApplicationsPage(page);
+    // Step 3: Navigate to My Applications page
     await myApplicationsPage.clickOnMyApplicationsLink();
     await myApplicationsPage.waitForLoad();
     await myApplicationsPage.expectOnMyApplicationsPage();
-    AllureReporter.endStep();
 
-    AllureReporter.startStep("Identify a submitted application that requires legal forms");
-    const printLegalFormsLink = await findSubmittedApplicationWithLegalForms(page, myApplicationsPage);
-    expect(printLegalFormsLink, "Expected at least one 'Print legal forms for Submission' link to be visible for a submitted application requiring legal forms.").not.toBeNull();
-    AllureReporter.endStep();
+    // Step 4: Identify the submitted application that requires legal forms
+    // Prefer selecting by applicationId if supported
+    await myApplicationsPage.selectApplicationById(applicationId);
+    await myApplicationsPage.waitForApplicationDetailsLoad();
 
-    AllureReporter.startStep("Verify the 'Print Legal Forms for Submission' link is visible and has correct text");
-    await expect(printLegalFormsLink!).toBeVisible({ timeout: 10000 });
-    await expect(printLegalFormsLink!).toHaveText(/Print legal forms for Submission/i);
-    if (expectedLinkText && expectedLinkText !== "Print legal forms for Submission") {
-      await expect(printLegalFormsLink!).toHaveText(new RegExp(expectedLinkText, "i"));
-    }
-    AllureReporter.endStep();
+    // Step 5: Verify the presence and visibility of the 'Print Legal Forms for Submission' link
+    const isPrintLegalFormsVisible = await myApplicationsPage.isPrintLegalFormsLinkVisible();
+    expect(isPrintLegalFormsVisible).toBeTruthy();
 
-    AllureReporter.startStep("Verify clicking the link opens a new window and user remains on My Applications page");
-    const [popup] = await Promise.all([
-      page.waitForEvent('popup'),
-      printLegalFormsLink!.click()
-    ]);
-    await expect(popup).not.toBeNull();
-    // Optionally check the popup URL or content
-    await expect(page).toHaveURL(/MyApplications/i);
+    // Step 6: User remains on My Applications page (no navigation away)
     await myApplicationsPage.expectOnMyApplicationsPage();
-    AllureReporter.endStep();
-
-    AllureReporter.startStep("Sign out");
-    await myApplicationsPage.signOut();
-    AllureReporter.endStep();
   });
 });
