@@ -1,31 +1,45 @@
-import { Page, expect } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class ViewUploadFormsPage {
     readonly page: Page;
-    private viewUploadFormsLink;
-    private sendToAcrButton;
-    private confirmButton;
-    private appViewUploadFormContent;
-    private uploadSurveyFileButton;
-    private filesNotReviewedMessage;
+    private viewUploadFormsLink: Locator;
+    private landingHeading: Locator;
+    private viewSubmittedAppSummaryLink: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        // Use robust selectors for all key elements
-        this.viewUploadFormsLink = page.getByRole('link', { name: /View\/Upload FormsAction/i });
-        this.sendToAcrButton = page.getByRole('button', { name: /Send to ACR/i });
-        this.confirmButton = page.getByRole('button', { name: /Confirm/i });
-        this.appViewUploadFormContent = page.locator('#AppViewUploadFormContent');
-        this.uploadSurveyFileButton = page.locator('input[acr="btn"][value="Upload new file for Survey Agreement"]');
-        this.filesNotReviewedMessage = page.getByText('The files related to this');
+        // Use partial link text for robustness due to dynamic action required suffix
+        this.viewUploadFormsLink = page.getByRole('link', { name: /View\/Upload Forms/ });
+        // Assume heading is a visible h2/h3 or similar; fallback to content region if not
+        this.landingHeading = page.locator('h2, h3, [data-testid="view-upload-forms-heading"], #AppViewUploadFormContent');
+        // Use partial link text for the summary link
+        this.viewSubmittedAppSummaryLink = page.getByRole('link', { name: /View Submitted Application Summary/ });
+    }
+
+    /**
+     * Navigates to the View/Upload Forms landing page by clicking the link.
+     * Waits for the landing heading to be visible.
+     */
+    async navigateToViewUploadForms(): Promise<void> {
+        await this.viewUploadFormsLink.first().waitFor({ state: 'visible' });
+        await this.viewUploadFormsLink.first().click();
+        await this.landingHeading.first().waitFor({ state: 'visible' });
+    }
+
+    /**
+     * Verifies the View/Upload Forms page is loaded by checking key elements.
+     * Waits for heading and the View Submitted Application Summary link.
+     */
+    async verifyViewUploadFormsPage(): Promise<void> {
+        await this.landingHeading.first().waitFor({ state: 'visible' });
+        await expect(this.landingHeading.first()).toBeVisible();
+        await this.viewSubmittedAppSummaryLink.first().waitFor({ state: 'visible' });
+        await expect(this.viewSubmittedAppSummaryLink.first()).toBeVisible();
     }
 
     async openViewUploadForms() {
-        // Wait for the link to be visible and click
-        await this.viewUploadFormsLink.first().waitFor({ state: 'visible' });
+        // For backward compatibility, keep the original method
         await this.viewUploadFormsLink.first().click();
-        // Wait for the View/Upload Forms content to load
-        await this.appViewUploadFormContent.waitFor({ state: 'visible' });
     }
 
     async getFacilityID(modalityName: string): Promise<string> {
@@ -43,7 +57,7 @@ export class ViewUploadFormsPage {
             await this.uploadSurveyFileButton.waitFor({ state: 'visible' });
             const [fileChooser] = await Promise.all([
                 this.page.waitForEvent('filechooser'),
-                this.uploadSurveyFileButton.click(), // This triggers the file dialog
+                this.page.click('input[acr="btn"][value="Upload new file for Survey Agreement"]'), // This triggers the file dialog
             ]);
             await fileChooser.setFiles(filePath);
         } catch (error) {
